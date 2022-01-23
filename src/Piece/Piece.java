@@ -1,14 +1,14 @@
 package Piece;
 
-import Board.Position;
+import Board.Square;
 import Game.Color;
 
 public interface Piece {
-    Color Color(Color color);
+    Color Color();
     boolean isWhite();
-    Position[][] Position(Position[][] Position);
-    Position[][] MovePosition(Position[][] MovePosition);
-
-
+    void MovePosition(int row,int col);
+    boolean checkLegalMove(int row,int col);
+    //need arrangement for possible moves (return type or think about inside)
+    Square[][] PossibleMoves();
 }
 
