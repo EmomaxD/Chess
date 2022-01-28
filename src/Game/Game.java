@@ -1,11 +1,13 @@
 package Game;
 
-import Piece.Pawn;
+import Board.Board;
 
 public class Game{
     public Game(){
-       Pawn pawn = new Pawn(0,1,0,Color.WHITE);
-
+        Start();
+    }
+    void Start(){
+        new Board();
     }
 }
 

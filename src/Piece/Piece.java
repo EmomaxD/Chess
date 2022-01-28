@@ -1,32 +1,40 @@
 package Piece;
+
 import Game.Color;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Piece {
-    private int id,point,row,col,PossibleRow,PossibleCol;
+public abstract class Piece{
+    private int id,point,x,y;
     private String name;
-    private boolean canMove;
+    private boolean canMove=true;
     private Color color;
+    private final List<Object> PossibleMoves=new ArrayList<>();
 
-
-    public Piece(int id,int row,int col,Color color){
+    public Piece(int id,int x,int y,Color color){
         if(id<0 || id>5){
             System.out.println("Wrong id given for piece please check your piece objects");
             return;
         }
         this.setId(id);
-        this.setRow(row);
-        this.setCol(col);
+        this.setX(x);
+        this.setY(y);
         this.setColor(color);
-        setPoint();
-        setName();
-        LogPiece();
+        this.setPoint();
+        this.setName();
     }
+
+    void Move(int xPosition,int yPosition){
+        this.setX(xPosition);
+        this.setY(yPosition);
+    }
+
     public void LogPiece(){
         System.out.println("ID : "+this.getId());
         System.out.println("Name : "+this.getName());
         System.out.println("Point : "+this.getPoint());
-        System.out.println("Row : "+this.getRow());
-        System.out.println("Col : "+this.getCol());
+        System.out.println("Row : "+this.getX());
+        System.out.println("Col : "+this.getY());
         System.out.println("Color : "+this.getColor());
     }
     private void setName(){
@@ -77,6 +85,19 @@ public abstract class Piece {
                 break;
         }
     }
+    public void addPossibleMoves(Object move){
+        PossibleMoves.add(move);
+    }
+    public void deletePossibleMoves(Object move){
+        PossibleMoves.remove(move);
+    }
+    public void LogAllPossibleMoves(){
+        System.out.println("Possible Moves : " + PossibleMoves);
+        System.out.println("Possible moves size : "+PossibleMoves.size());
+    }
+    public Object GetPossibleMove(int index){
+        return this.PossibleMoves.get(index);
+    }
 
     //GETTER SETTER
     public int getId() {
@@ -103,28 +124,22 @@ public abstract class Piece {
         this.name = name;
     }
 
-    public boolean isCanMove() {
-        return canMove;
+    public boolean isCanMove() {return canMove;}
+
+    public void setCanMove(boolean canMove) {this.canMove = canMove;}
+
+    public int getX() {
+        return x;
     }
 
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
+    public void setX(int row) {
+        this.x = row;
     }
 
-    public int getRow() {
-        return row;
-    }
+    public int getY() {return y;}
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
+    public void setY(int col) {
+        this.y = col;
     }
 
     public Color getColor() {
