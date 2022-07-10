@@ -25,6 +25,6 @@ hs_err_pid*
 #CUSTOM
 *.project
 *.iml
-/out/**
+out/**
 *.classpath
-/.idea/**
+.idea/**
