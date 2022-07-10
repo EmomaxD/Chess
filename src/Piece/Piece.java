@@ -4,37 +4,41 @@ import Game.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Piece{
-    private int id,point,x,y;
+public class Piece{
+    private int id,point;
     private String name;
     private boolean canMove=true;
     private Color color;
     private final List<Object> PossibleMoves=new ArrayList<>();
 
-    public Piece(int id,int x,int y,Color color){
+    private PiecePosition position;
+
+    public Piece(){
+
+    }
+
+    public Piece(int id,PiecePosition pos,Color color){
         if(id<0 || id>5){
             System.out.println("Wrong id given for piece please check your piece objects");
             return;
         }
         this.setId(id);
-        this.setX(x);
-        this.setY(y);
+        this.position=pos;
         this.setColor(color);
         this.setPoint();
         this.setName();
     }
 
     void Move(int xPosition,int yPosition){
-        this.setX(xPosition);
-        this.setY(yPosition);
+        this.setPosition(new PiecePosition(xPosition,yPosition));
     }
 
     public void LogPiece(){
         System.out.println("ID : "+this.getId());
         System.out.println("Name : "+this.getName());
         System.out.println("Point : "+this.getPoint());
-        System.out.println("Row : "+this.getX());
-        System.out.println("Col : "+this.getY());
+        System.out.println("Row : "+this.getPosition().getX());
+        System.out.println("Col : "+this.getPosition().getY());
         System.out.println("Color : "+this.getColor());
     }
     private void setName(){
@@ -100,6 +104,12 @@ public abstract class Piece{
     }
 
     //GETTER SETTER
+    public void setPosition(PiecePosition pPosition){
+        this.position=pPosition;
+    }
+    public PiecePosition getPosition(){
+        return this.position;
+    }
     public int getId() {
         return id;
     }
@@ -127,20 +137,6 @@ public abstract class Piece{
     public boolean isCanMove() {return canMove;}
 
     public void setCanMove(boolean canMove) {this.canMove = canMove;}
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int row) {
-        this.x = row;
-    }
-
-    public int getY() {return y;}
-
-    public void setY(int col) {
-        this.y = col;
-    }
 
     public Color getColor() {
         return color;

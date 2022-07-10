@@ -6,10 +6,9 @@ public class Pawn extends Piece{
 
     boolean firstMove=true;
 
-    public Pawn(int id, int row, int col, Color color) {
-        super(id,row, col, color);
-
-      if(!(this.getId()==0)){
+    public Pawn(int id,PiecePosition pos, Color color) {
+        super(id,pos,color);
+        if(!(this.getId()==0)){
             System.out.println("Wrong id given for a PAWN check your PAWN objects");
             return;
         }
@@ -18,18 +17,18 @@ public class Pawn extends Piece{
     //FUNCTIONS
     private void addPossiblePawnMoves(){
         if(this.getColor()==Color.WHITE && firstMove){
-            this.addPossibleMoves("["+(this.getX()-1)+"]["+this.getY()+"]");
-            this.addPossibleMoves("["+(this.getX()-2)+"]["+this.getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()-1)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()-2)+"]["+this.getPosition().getY()+"]");
         }
         else if(this.getColor()==Color.WHITE && !firstMove){
-            this.addPossibleMoves("["+(this.getX()-1)+"]["+this.getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()-1)+"]["+this.getPosition().getY()+"]");
         }
         else if(this.getColor()==Color.BLACK && firstMove){
-            this.addPossibleMoves("["+(this.getX()+1)+"]["+this.getY()+"]");
-            this.addPossibleMoves("["+(this.getX()+2)+"]["+this.getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()+1)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()+2)+"]["+this.getPosition().getY()+"]");
         }
         else if(this.getColor()==Color.BLACK && !firstMove){
-            this.addPossibleMoves("["+(this.getX()+1)+"]["+this.getY()+"]");
+            this.addPossibleMoves("["+(this.getPosition().getX()+1)+"]["+this.getPosition().getY()+"]");
         }
 
     }
