@@ -9,7 +9,7 @@ public class Piece{
     private String name;
     private boolean canMove=true;
     private Color color;
-    private final List<Object> PossibleMoves=new ArrayList<>();
+    private List<PiecePosition> PossibleMoves=new ArrayList<>();
 
     private PiecePosition position;
 
@@ -89,7 +89,7 @@ public class Piece{
                 break;
         }
     }
-    public void addPossibleMoves(Object move){
+    public void addPossibleMoves(PiecePosition move){
         PossibleMoves.add(move);
     }
     public void deletePossibleMoves(Object move){
@@ -99,9 +99,10 @@ public class Piece{
         System.out.println("Possible Moves : " + PossibleMoves);
         System.out.println("Possible moves size : "+PossibleMoves.size());
     }
-    public Object GetPossibleMove(int index){
+    public PiecePosition GetPossibleMove(int index){
         return this.PossibleMoves.get(index);
     }
+    public List<PiecePosition> getPossibleMoves(){return this.PossibleMoves;}
 
     //GETTER SETTER
     public void setPosition(PiecePosition pPosition){

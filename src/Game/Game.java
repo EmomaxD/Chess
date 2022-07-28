@@ -7,7 +7,7 @@ public class Game{
         Start();
     }
     void Start(){
-        new Board();
+        new Board().MakeBoard();
     }
 }
 

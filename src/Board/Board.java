@@ -1,24 +1,32 @@
 package Board;
 
 import Game.Color;
-import Piece.Piece;
 import Piece.PiecePosition;
 import Piece.Pawn;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class Board extends JFrame{
-    Square[][] square=new Square[8][8];
+    public Square[][] square=new Square[8][8];
 
     public Board(){
-        GUI();
-        square[6][6].getPiece().LogPiece();
-        square[6][6].getPiece().LogAllPossibleMoves();
-        paintBoard();
+
     }
+    public void MakeBoard(){
+        GUI();
+    }
+
+    protected void paintPossibleMoves(int row,int col){
+        square[row][col].setBorder(BorderFactory.createBevelBorder(1, java.awt.Color.red, java.awt.Color.red));
+    }
+
     protected void paintBoard(){
         for(int i=0;i< square.length;i++){
             for(int j=0;j<square[0].length;j++){
+                square[i][j].addActionListener(e -> {
+
+                });
                 if(i%2==0){
                     if(j%2==0){
                         square[i][j].setBackground(java.awt.Color.white);
@@ -57,6 +65,7 @@ public class Board extends JFrame{
         this.setTitle("Chess");
         this.setLayout(new GridLayout(8,8));
         CreateBoard();
+        paintBoard();
         this.setVisible(true);
     }
 

@@ -17,18 +17,18 @@ public class Pawn extends Piece{
     //FUNCTIONS
     private void addPossiblePawnMoves(){
         if(this.getColor()==Color.WHITE && firstMove){
-            this.addPossibleMoves("["+(this.getPosition().getX()-1)+"]["+this.getPosition().getY()+"]");
-            this.addPossibleMoves("["+(this.getPosition().getX()-2)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()-1,this.getPosition().getY()));
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()-2,this.getPosition().getY()));
         }
         else if(this.getColor()==Color.WHITE && !firstMove){
-            this.addPossibleMoves("["+(this.getPosition().getX()-1)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()-1,this.getPosition().getY()));
         }
         else if(this.getColor()==Color.BLACK && firstMove){
-            this.addPossibleMoves("["+(this.getPosition().getX()+1)+"]["+this.getPosition().getY()+"]");
-            this.addPossibleMoves("["+(this.getPosition().getX()+2)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()+1,this.getPosition().getY()));
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()+2,this.getPosition().getY()));
         }
         else if(this.getColor()==Color.BLACK && !firstMove){
-            this.addPossibleMoves("["+(this.getPosition().getX()+1)+"]["+this.getPosition().getY()+"]");
+            this.addPossibleMoves(new PiecePosition(this.getPosition().getX()+1,this.getPosition().getY()));
         }
 
     }
